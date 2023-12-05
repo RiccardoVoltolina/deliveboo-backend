@@ -17,18 +17,17 @@ class ProductSeeder extends Seeder
         // config andiamo a prendere il file products nella cartella config
         $products = config('products');
 
-        foreach($products as $product){
+        foreach ($products as $product) {
             $new_product = new Product();
 
-            $new_product -> name = $product['name'];
-            $new_product -> price = $product['price'];
-            $new_product -> description = $product['description'];
-            $new_product -> cover_image =
-             $product['cover_image'];
-             $new_product -> ingredients =
-             $new_product -> name = $product['name']; $product['ingredients'];
-             $new_product -> is_available = $product['is_available'];
-             $new_product -> save();         
+            $new_product->name = $product['name'];
+            $new_product->price = $product['price'];
+            $new_product->description = $product['description'];
+            $new_product->cover_image = $product['cover_image'];
+            $new_product->ingredients = $product['ingredients'];
+            $new_product->name = $product['name'];
+            $new_product->is_available = $product['is_available'];
+            $new_product->save();
         }
     }
 }
