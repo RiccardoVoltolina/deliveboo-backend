@@ -19,9 +19,9 @@ class ProductSeeder extends Seeder
 
         foreach ($products as $product) {
             $new_product = new Product();
-
             $new_product->name = $product['name'];
             $new_product->price = $product['price'];
+            $new_product->restaurant_id = $product['restaurant_id'];
             $new_product->description = $product['description'];
             $new_product->cover_image = $product['cover_image'];
             $new_product->ingredients = implode(', ', $product['ingredients']);
