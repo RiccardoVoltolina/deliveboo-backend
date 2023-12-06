@@ -43,11 +43,12 @@
                                 </td>
 
                                 <td class="text-center m-auto">
+                                    <div class="d-flex">
 
                                     <a class="btn btn-success" href="">
                                         <i class="fa-solid fa-eye text-white"></i>
                                     </a>
-                                    <a class="btn btn-warning" href="">
+                                    <a class="btn btn-warning mx-2" href="">
                                         <i class="fa-solid fa-pencil text-white"></i></a>
                                     <!-- Modal trigger button -->
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
@@ -90,6 +91,8 @@
                                     <script>
                                         const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
                                     </script>
+                                    </div>
+
 
                                 </td>
                             </tr>
