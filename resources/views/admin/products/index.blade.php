@@ -2,14 +2,11 @@
 
 @section('content')
     <div>
-        <h4 class="my-3">Aggiungi un piatto
-            <button class="btn btn-primary py-1 px-3 ms-5"><a href="" class="text-white"><svg
-                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-plus-lg" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-                    </svg></a></button>
-        </h4>
+        <form action="{{ route('admin.products.create') }}">
+
+            <button type="submit" class="btn btn-success my-3">Aggiungi un nuovo piatto</button>
+
+        </form>
     </div>
     <div class="card-body">
 
