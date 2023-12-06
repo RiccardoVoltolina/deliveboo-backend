@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+
+        // ritornano i dati dell'utente loggato, con le sue informazioni
+        
+        $products = Auth::user()->restaurants->products;
 
         return view("admin.products.index", compact('products'));
         
