@@ -2,7 +2,7 @@
 
 @section('content')
     <div>
-        <h4>Add Product
+        <h4 class="my-3">Aggiungi un piatto
             <button class="btn btn-primary py-1 px-3 ms-5"><a href="" class="text-white"><svg
                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -25,9 +25,9 @@
                     <caption>All Product</caption>
                     <tr>
                         <th class="text-center">ID</th>
-                        <th class="text-center">NAME</th>
-                        <th class="text-center">THUMB</th>
-                        <th class="text-center">ACTIONS</th>
+                        <th class="text-center">NOME</th>
+                        <th class="text-center">IMMAGINE</th>
+                        <th class="text-center">AZIONI</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
@@ -65,21 +65,21 @@
                                             role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalTitleId">Delete</h5>
+                                                    <h5 class="modal-title" id="modalTitleId">Cancella</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Are you sure you want to delete {{ $product->name }}?
+                                                    Sei sicuro di cancellare questo piatto? {{ $product->name }}?
                                                 </div>
                                                 <div class="modal-footer justify-content-evenly">
                                                     <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
+                                                        data-bs-dismiss="modal">Chiudi</button>
                                                     <form action=" " method="post">
                                                         @csrf
                                                         @method('DELETE')
 
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                        <button type="submit" class="btn btn-danger">Cancella</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -97,7 +97,7 @@
                                 </td>
                             </tr>
                         @empty
-                            <h1>no products here!</h1>
+                            <h1>Non hai ancora prodotti!</h1>
                         @endforelse
                     @endif
 
