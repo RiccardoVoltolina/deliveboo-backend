@@ -9,6 +9,6 @@ class OwnerController extends Controller
 {
     public function index() {
 
-        return view('admin.sidebar');
+        return view('admin.products.sidebar');
     }
 }
