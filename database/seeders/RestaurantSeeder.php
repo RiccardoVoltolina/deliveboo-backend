@@ -18,7 +18,7 @@ class RestaurantSeeder extends Seeder
 
         foreach($restaurants as $restaurant){
             $new_restaurant = new Restaurant();
-
+            $new_restaurant -> user_id = 1;
             $new_restaurant -> cover_image = $restaurant['cover_image'];
             $new_restaurant -> name = $restaurant['name'];
             $new_restaurant -> address = $restaurant['address'];
