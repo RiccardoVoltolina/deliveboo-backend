@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OwnerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ProductController;
 use App\Models\Product;
 
 /*
@@ -24,8 +24,10 @@ Route::get('/', function () {
 Route::get('dashboard', [OwnerController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
-
-Route::resource('index', ProductController::class);
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+    
+    Route::resource('products', ProductController::class);
+});
 
 
 

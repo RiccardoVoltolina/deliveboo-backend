@@ -16,7 +16,7 @@
 
     {{-- vado a attivare la funzione store nel product controller (la rotta la vedo nelle route list) --}}
 
-    <form action="{{ route('index.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
 
         @csrf
         <h1 class="my-3">INSERISCI UN NUOVO PIATTO</h1>

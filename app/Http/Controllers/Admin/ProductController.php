@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Restaurant;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
@@ -16,11 +17,25 @@ class ProductController extends Controller
     public function index()
     {
 
+        // partiamo dai prodotti e li filtriamo tramite where con l'id del ristorante è uguale al id dell utente loggato
+        // dd(Restaurant::where('user_id', Auth::user()->id)->first()?->id);
+        if (Restaurant::where('user_id', Auth::user()->id)->first()?->id) {
+            $products =  Product::where('restaurant_id',  Restaurant::where('user_id', Auth::user()->id)->first()->id)->get();
+            return view("admin.products.index", compact('products'));
+
+        } else {
+            $message = 'non hai un ristorante';
+            return view("admin.products.index", compact('message'));
+        }
+
+
+        // dd($products[0]->id);
+
+
         // ritornano i dati dell'utente loggato, con le sue informazioni
         
-        $products = Auth::user()->restaurants->products;
+        // $products = Auth::user()->restaurant()->products;
 
-        return view("admin.products.index", compact('products'));
         
     }
 

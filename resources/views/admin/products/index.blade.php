@@ -31,9 +31,13 @@
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
+                    @if (isset($message))
+                    <h1>{{$message}}</h1>
+
+                    @else
                     @forelse ($products as $product)
-                        <tr class="table-primary">
-                            <td class="text-center m-auto" scope="row">{{ $product->id }}</td>
+                    <tr class="table-primary">
+                        <td class="text-center m-auto" scope="row">{{ $product->id }}</td>
                             <td class="text-center m-auto">{{ $product->name }}</td>
                             <td class="text-center m-auto">
                                 <img class="img-fluid w-50" src="{{ $product->cover_image }}" alt="">
@@ -93,6 +97,8 @@
                     @empty
                         <h1>no products here!</h1>
                     @endforelse
+                    @endif
+
 
 
 
