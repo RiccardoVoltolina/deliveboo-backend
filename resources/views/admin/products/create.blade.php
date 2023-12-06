@@ -40,7 +40,7 @@
             <label for="description" class="form-label">Descrizione</label>
             {{-- utilizziamo la funzione old per ridare all'utente i valori inseriti prima,in caso di errore --}}
             <input type="text" class="form-control" name="description" id="description" aria-describedby="helpId" placeholder="Scrivi una descrizione per il tuo progetto" value="{{ old('description') }}">
-            <small id="descriptionHelper" class="form-text text-muted">Scrivi il link del tuo progetto github</small>
+            <small id="descriptionHelper" class="form-text text-muted">Scrivi una descrizione per il tuo piatto</small>
         </div>
 
         
@@ -60,7 +60,7 @@
        
 
 
-        <button type="submit" class="btn btn-primary">Aggiungi progetto</button>
+        <button type="submit" class="btn btn-primary">Aggiungi piatto</button>
     </form>
     {{-- <a class="nav-link my-2 text-end" href="{{route('project.index')}}">
         <button type="button" class="btn btn-warning">TORNA AI PROGETTI</button>
