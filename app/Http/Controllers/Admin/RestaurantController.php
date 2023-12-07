@@ -16,10 +16,14 @@ class RestaurantController extends Controller
     public function index()
     {
 
+
+
         // ritornano i dati dell'utente loggato, con le sue informazioni
 
-        $restaurants = Auth::user()->restaurants;
-        return view("admin.restaurants.index", compact('restaurants'));
+        $restaurants = Auth::user()->restaurant;
+
+       
+        return view("admin.products.dashboard", compact('restaurants'));
     }
 
     /**
