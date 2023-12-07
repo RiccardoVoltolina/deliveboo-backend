@@ -41,20 +41,27 @@
                                 <td class="text-center m-auto">
                                     <div class="d-flex">
 
-                                        <a class="btn btn-success" href="">
-                                            <i class="fa-solid fa-eye text-white"></i>
-                                        </a>
-                                        <a class="btn btn-warning mx-2" href="">
-                                            <i class="fa-solid fa-pencil text-white"></i></a>
-                                            <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
+                                        <form action="{{ route('admin.products.show', [$product->id]) }}">
+
+                                            <button type="submit" class="btn btn-primary"><i
+                                                    class="fa-solid fa-circle-info"></i></button>
+
+                                        </form>
+                                        <form class="mx-2" action="{{ route('admin.products.edit', [$product->id]) }}">
+
+                                            <button type="submit" class="btn btn-info"><i
+                                                    class="fa-solid fa-pencil"></i></button>
+
+                                        </form>
+                                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Elimina <i
+                                            <button type="submit" class="btn btn-danger"> <i
                                                     class="fa-solid fa-trash"></i></button>
                                         </form>
 
-                                       
-                                        
+
+
 
                                     </div>
 
@@ -62,7 +69,7 @@
                                 </td>
                             </tr>
                         @empty
-                            <h1>Non hai ancora prodotti!</h1>
+                            <h1>Non hai ancora inserito dei prodotti!</h1>
                         @endforelse
                     @endif
 
