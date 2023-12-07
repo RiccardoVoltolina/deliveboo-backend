@@ -73,6 +73,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->price = $request->price;
         $product->ingredients = $request->ingredients;
+        $product->is_available = $request->is_available;
         $product->restaurant_id = Restaurant::where('user_id', Auth::user()->id)->first()?->id;
 
 
@@ -143,6 +144,6 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return redirect()->route('admin.products.index')->with('messaggio', 'hai cancellato il piatto con successo!');    
+        return redirect()->route('admin.products.index')->with('messaggio', 'hai cancellato il piatto con successo!');
     }
 }

@@ -29,6 +29,8 @@
             <small id="nameHelper" class="form-text text-muted">Scrivi un nome per il tuo piatto</small>
         </div>
 
+        
+
         <div class="mb-3">
             <label for="price" class="form-label">Prezzo</label>
             {{-- utilizziamo la funzione old per ridare all'utente i valori inseriti prima,in caso di errore --}}
@@ -56,6 +58,24 @@
             <input type="text" class="form-control" name="ingredients" id="ingredients" aria-describedby="help" placeholder="Scrivi gli autori del tuo progetto" value="{{ old('ingredients') }}">
             <small id="ingredientsHelper" class="form-text text-muted">Scrivi gli ingredienti del tuo progetto</small>
         </div>
+
+        <div class="mb-3">
+            <label for="is_available" class="form-label">E' disponibile?</label>
+            <select class="form-select @error('is_available') is-invalid  @enderror" name="is_available" id="is_available">
+                <option selected disabled>Scegli se questo piatto è disponibile</option>
+                <option class="d-none" value="">Uncategorized</option>
+        
+                <option value="1">disponibile</option>
+                <option value="0">non disponibile</option>
+
+        
+        
+        
+            </select>
+        </div>
+        @error('is_available')
+        <div class="text-danger">{{$message}}</div>
+        @enderror
 
        
 

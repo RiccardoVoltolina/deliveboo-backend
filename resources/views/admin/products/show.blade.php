@@ -10,6 +10,7 @@
                 <tr>
                     <th class="text-center" scope="col">IMMAGINE</th>
                     <th class="text-center" scope="col">ID</th>
+                    <th class="text-center" scope="col">DISPONIBILE?</th>
                     <th class="text-center" scope="col">NOME</th>
                     <th class="text-center" scope="col">PREZZO</th>
                     <th class="text-center" scope="col">DESCRIZIONE</th>
@@ -27,12 +28,18 @@
                         @endif
                     </td>
                     <td class="text-center m-auto" scope="row">{{ $product->id }}</td>
+                    @if ($product->is_available === 0)
+                        <td class="text-center m-auto" scope="row">Non disponibile</td>
+                    @else
+                        <td class="text-center m-auto" scope="row">Disponibile</td>
+                    @endif
+
                     <td class="text-center" scope="row">{{ $product->name }}</td>
 
-                    
+
 
                     <td class="text-center">
-                        {{$product->price}}
+                        {{ $product->price }}
                     </td>
 
 
@@ -44,7 +51,7 @@
                         @endif
                     </td>
 
-                    
+
 
                     <td class="text-center">
                         @if ($product->ingredients)
@@ -53,9 +60,9 @@
                             N/A
                         @endif
                     </td>
-                   
 
-                    
+
+
 
                 </tr>
 
