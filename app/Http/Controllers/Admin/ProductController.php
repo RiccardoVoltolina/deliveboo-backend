@@ -23,7 +23,6 @@ class ProductController extends Controller
         if (Restaurant::where('user_id', Auth::user()->id)->first()?->id) {
             $products =  Product::where('restaurant_id',  Restaurant::where('user_id', Auth::user()->id)->first()->id)->get();
             return view("admin.products.index", compact('products'));
-
         } else {
             $message = 'non hai un ristorante';
             return view("admin.products.index", compact('message'));
@@ -34,10 +33,10 @@ class ProductController extends Controller
 
 
         // ritornano i dati dell'utente loggato, con le sue informazioni
-        
+
         // $products = Auth::user()->restaurant()->products;
 
-        
+
     }
 
     /**
@@ -63,11 +62,11 @@ class ProductController extends Controller
 
         $product = new Product();
 
-     
+
 
         if ($request->has('cover_image')) {
-            $file_path =  Storage::put('product_images', $request->cover_image);
-            $product ->cover_image = $file_path;
+            $file_path =  Storage::disk('public')->put('product_images', $request->cover_image);
+            $product->cover_image = $file_path;
         }
 
         $product->name = $request->name;
@@ -75,19 +74,17 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->ingredients = $request->ingredients;
         $product->restaurant_id = Restaurant::where('user_id', Auth::user()->id)->first()?->id;
-        
-        
 
-       
+
+
+
 
 
         $product->save();
 
-        // IMPORTANTE: prima di usare atach, bisogna eseguire il save del progetto, senò non funziona!
+        // IMPORTANTE: prima di usare atach, bisogna eseguire il save del prodotto, senò non funziona!
 
-        // prendo i dati della richiesta e lo passo nel model Technology e tramite attach, creo il collegamento nella tabella condivisa tra project e tecnology
-        
-        $product->orders()->attach($request->orders);
+        // $product->orders()->attach($request->orders);
 
         return to_route('admin.products.index');
     }
