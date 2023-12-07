@@ -35,8 +35,15 @@
                                 <td class="text-center m-auto" scope="row">{{ $product->id }}</td>
                                 <td class="text-center m-auto">{{ $product->name }}</td>
                                 <td class="text-center m-auto">
-                                    <img class="img-fluid w-50" src="{{ $product->cover_image }}" alt="">
+                                    @if (Str::contains($product->cover_image, 'product_images'))
+                                        <img class="img-fluid w-50" src="{{ asset('storage/' . $product->cover_image) }}"
+                                            alt="">
+                                    @else
+                                        <img class="img-fluid w-50" src="{{ $product->cover_image }}" alt="">
+                                    @endif
                                 </td>
+
+
 
                                 <td class="text-center m-auto">
                                     <div class="d-flex">
