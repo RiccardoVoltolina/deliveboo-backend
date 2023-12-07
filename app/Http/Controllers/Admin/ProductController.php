@@ -22,6 +22,7 @@ class ProductController extends Controller
         // dd(Restaurant::where('user_id', Auth::user()->id)->first()?->id);
         if (Restaurant::where('user_id', Auth::user()->id)->first()?->id) {
             $products =  Product::where('restaurant_id',  Restaurant::where('user_id', Auth::user()->id)->first()->id)->get();
+            $products = Product::orderByDesc('id')->paginate(10);
             return view("admin.products.index", compact('products'));
         } else {
             $message = 'non hai un ristorante';
