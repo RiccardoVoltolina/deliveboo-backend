@@ -49,7 +49,7 @@
                                             <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Elimina <i
+                                            <button type="submit" class="btn btn-danger"><i
                                                     class="fa-solid fa-trash"></i></button>
                                         </form>
 
