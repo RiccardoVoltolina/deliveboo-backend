@@ -11,7 +11,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'name', 'restaurant_name', 'price', 'ingredients', 'description', 'cover_image', 'is_avaible'];
+    protected $fillable = ['id', 'name', 'restaurant_name', 'price', 'ingredients', 'description', 'cover_image', 'is_available'];
 
     public function orders(): BelongsToMany
     {

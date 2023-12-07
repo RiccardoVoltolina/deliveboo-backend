@@ -22,6 +22,7 @@ class ProductController extends Controller
         // dd(Restaurant::where('user_id', Auth::user()->id)->first()?->id);
         if (Restaurant::where('user_id', Auth::user()->id)->first()?->id) {
             $products =  Product::where('restaurant_id',  Restaurant::where('user_id', Auth::user()->id)->first()->id)->get();
+            $products = Product::orderByDesc('id')->paginate(10);
             return view("admin.products.index", compact('products'));
         } else {
             $message = 'non hai un ristorante';
@@ -57,7 +58,7 @@ class ProductController extends Controller
             'description' => 'nullable|max:1000|min:2',
             'price' => 'nullable|min:2',
             'cover_image' => 'nullable|mimes:jpg,bmp,png|max:300',
-            'ingredients' => 'required|max:50|min:2',
+            'ingredients' => 'required|max:1000|min:2',
         ]);
 
         $product = new Product();
@@ -73,6 +74,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->price = $request->price;
         $product->ingredients = $request->ingredients;
+        $product->is_available = $request->is_available;
         $product->restaurant_id = Restaurant::where('user_id', Auth::user()->id)->first()?->id;
 
 
@@ -108,13 +110,32 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
-        $val_data = $request->validated();
+        $validated = $request->validate([
+            'name' => 'required|max:50|min:2',
+            'description' => 'nullable|max:1000|min:2',
+            'price' => 'nullable|min:2',
+            'cover_image' => 'nullable|mimes:jpg,bmp,png|max:300',
+            'ingredients' => 'required|max:1000|min:2',
+        ]);
 
-        $product->update($val_data);
+        $data = $request->all();
 
-        return to_route('admin.products.index')->with('message', 'Products updated succesfully!');
+        if ($request->has('cover_image')) {
+            $file_path =  Storage::disk('public')->put('product_images', $request->cover_image);
+
+            // prendo il $data, che contiene tutte le richieste, seleziono il thumb e gli dico che è ugiuale a $file_path
+
+
+            $data['cover_image'] = $file_path;
+        }
+
+        // aggiorno i dati del mio progetto
+
+        $product->update($data);
+
+        return redirect()->route('admin.products.show', $product->id);
     }
 
     /**
@@ -123,6 +144,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return to_route('admin.products.index')->with('message', 'Product deleted succesfully!');
+
+        return redirect()->route('admin.products.index')->with('messaggio', 'hai cancellato il piatto con successo!');
     }
 }

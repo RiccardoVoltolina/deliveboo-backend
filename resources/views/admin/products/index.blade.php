@@ -35,26 +35,43 @@
                                 <td class="text-center m-auto" scope="row">{{ $product->id }}</td>
                                 <td class="text-center m-auto">{{ $product->name }}</td>
                                 <td class="text-center m-auto">
-                                    <img class="img-fluid w-50" src="{{ $product->cover_image }}" alt="">
+                                    @if (Str::contains($product->cover_image, 'product_images'))
+                                        <img class="img-fluid w-50" src="{{ asset('storage/' . $product->cover_image) }}"
+                                            alt="">
+                                    @else
+                                        <img class="img-fluid w-50" src="{{ $product->cover_image }}" alt="">
+                                    @endif
                                 </td>
+
+
 
                                 <td class="text-center m-auto">
                                     <div class="d-flex">
 
-                                        <a class="btn btn-success" href="">
-                                            <i class="fa-solid fa-eye text-white"></i>
-                                        </a>
-                                        <a class="btn btn-warning mx-2" href="">
-                                            <i class="fa-solid fa-pencil text-white"></i></a>
-                                            <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
+                                        <form action="{{ route('admin.products.show', [$product->id]) }}">
+
+                                            <button type="submit" class="btn btn-primary"><i
+                                                    class="fa-solid fa-circle-info"></i></button>
+
+                                        </form>
+                                        <form class="mx-2" action="{{ route('admin.products.edit', [$product->id]) }}">
+
+                                            <button type="submit" class="btn btn-info"><i
+                                                    class="fa-solid fa-pencil"></i></button>
+
+                                        </form>
+                                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger"><i
+
+
+                                            <button type="submit" class="btn btn-danger"> <i
+
                                                     class="fa-solid fa-trash"></i></button>
                                         </form>
 
-                                       
-                                        
+
+
 
                                     </div>
 
@@ -62,7 +79,7 @@
                                 </td>
                             </tr>
                         @empty
-                            <h1>Non hai ancora prodotti!</h1>
+                            <h1>Non hai ancora inserito dei prodotti!</h1>
                         @endforelse
                     @endif
 
@@ -74,7 +91,7 @@
             </table>
         </div>
 
-        {{-- <div class="pt-4"> {{ $products->links('pagination::bootstrap-5') }} </div> --}}
+        <div class="pt-4"> {{ $products->links('pagination::bootstrap-5') }} </div>
     </div>
 
     </div>
