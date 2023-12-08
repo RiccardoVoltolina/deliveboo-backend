@@ -16,7 +16,7 @@ use Illuminate\View\View;
 class RegisteredUserController extends Controller
 {
     /**
-     * Display the registration view.
+     * Mostra la vista di registrazione.
      */
     public function create(): View
     {
@@ -24,7 +24,7 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * Handle an incoming registration request.
+     * Gestisce una richiesta di registrazione in arrivo.
      *
      * @throws \Illuminate\Validation\ValidationException
      */
@@ -34,12 +34,20 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'restaurantName' => ['required', 'string', 'max:255'],
+            'name_typology' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'vat' => ['required', 'string', 'max:255'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'restaurantName' => $request->restaurantName,
+            'name_typology' => $request->name_typology,
+            'address' => $request->address,
+            'vat' => $request->vat,
         ]);
 
         event(new Registered($user));

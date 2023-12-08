@@ -66,23 +66,23 @@
 
 
                                             <button type="submit" class="btn btn-danger"> <i
-
                                                     class="fa-solid fa-trash"></i></button>
                                         </form>
 
 
-
-
+                                        
+                                        
                                     </div>
-
-
+                                    
+                                    
                                 </td>
                             </tr>
-                        @empty
+                            @empty
                             <h1>Non hai ancora inserito dei prodotti!</h1>
-                        @endforelse
-                    @endif
-
+                            <div class="pt-4"> {{ $products->links('pagination::bootstrap-5') }} </div>
+                            @endforelse
+                            @endif
+                            
 
 
 
@@ -91,7 +91,6 @@
             </table>
         </div>
 
-        <div class="pt-4"> {{ $products->links('pagination::bootstrap-5') }} </div>
     </div>
 
     </div>

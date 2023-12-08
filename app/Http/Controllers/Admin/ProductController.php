@@ -25,7 +25,7 @@ class ProductController extends Controller
             $products = Product::orderByDesc('id')->paginate(10);
             return view("admin.products.index", compact('products'));
         } else {
-            $message = 'non hai un ristorante';
+            $message = 'Non hai inserito dei piatti!';
             return view("admin.products.index", compact('message'));
         }
 
