@@ -22,8 +22,9 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            ProductSeeder::class,
             RestaurantSeeder::class,
+            ProductSeeder::class,
+            TypologySeeder::class,
         ]);    
     }
 }
