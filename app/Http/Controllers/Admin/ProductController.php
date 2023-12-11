@@ -21,15 +21,26 @@ class ProductController extends Controller
 
         // partiamo dai prodotti e li filtriamo tramite where con l'id del ristorante è uguale al id dell utente loggato ? vuol dire che se non lo trova mi da null
         // dd(Restaurant::where('user_id', Auth::user()->id)->first()?->id);
-        if (Restaurant::where('user_id', Auth::user()->id)->first()?->id) {
-            $products =  Product::where('restaurant_id',  Restaurant::where('user_id', Auth::user()->id)->first()->id)->get();
+        $restaurant = Auth::user()->restaurant;
+
+        // dd($restaurant);
+
+
+
+        $products = $restaurant->products;
+
+
+        // dd($products);
+
+        if ($products->count() > 0) {
+            
             // $products = Product::orderByDesc('id')->paginate(10);
             return view("admin.products.index", compact('products'));
         } else {
             $message = 'non hai un ristorante';
             return view("admin.products.index", compact('message'));
         }
-
+        
 
         // dd($products[0]->id);
 
@@ -54,17 +65,17 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $restaurant = Auth::user()->restaurant;     
+        $restaurant = Auth::user()->restaurant;
         $validated = $request->validated();
 
-        
+
 
 
 
         if ($validated->hasFile('cover_image')) {
-            $file_path =  Storage::put('uploads',$validated['cover_image']);
+            $file_path =  Storage::put('uploads', $validated['cover_image']);
 
-            $validated ['cover_image'] = $file_path;
+            $validated['cover_image'] = $file_path;
         }
 
         $product = new Product();
@@ -81,7 +92,7 @@ class ProductController extends Controller
 
 
 
-       
+
 
         $product = $restaurant->product()->save($product);
 
