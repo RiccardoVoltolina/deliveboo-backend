@@ -53,11 +53,7 @@
                                     @foreach ($typologies as $typology)
                                     
                                     <option value="{{$typology->id}}">{{$typology->name_typology}}</option>
-                                    {{-- <option value="cinese">cinese</option>
-                                    <option value="giapponese">giapponese</option>
-                                    <option value="coreano">coreano</option>
-                                    <option value="messicano">messicano</option>
-                                    <option value="americano">americano</option> --}}
+                                    
                                     @endforeach
                             
                                 </select>
