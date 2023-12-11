@@ -12,7 +12,7 @@
     <div class="row justify-content-center">
         <div class="col">
             <div class="card">
-                <div class="card-header">{{ $user-> name}}'s Dashboard</div>
+                <div class="card-header">{{ $restaurants-> name}}'s Dashboard</div>
 
                 <div class="card-body">
                     @if (session('status'))
