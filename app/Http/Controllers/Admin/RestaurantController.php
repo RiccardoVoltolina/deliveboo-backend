@@ -15,15 +15,19 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-
-
-
-        // ritornano i dati dell'utente loggato, con le sue informazioni
-
-        $restaurants = Auth::user()->restaurant;
-
-       
-        return view("admin.products.dashboard", compact('restaurants'));
+        
+            $restaurants = Auth::user()->restaurant;
+    
+            $user= Auth::user();
+    
+            $typologies= Auth::user()->restaurant -> typologies;
+    
+            // $typologies= Typology::all();
+    
+            // dd($typologies);
+            
+            return view('admin.products.dashboard', compact('restaurants', 'user', 'typologies'));
+    
     }
 
     /**
