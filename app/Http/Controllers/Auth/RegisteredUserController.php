@@ -56,7 +56,7 @@ class RegisteredUserController extends Controller
 
         if ($request->has('typologies')) {
 
-            $user->typology()->sync($request->typologies);
+            $user->typologies()->sync($request->typologies);
 
         } 
         // dd($request);
