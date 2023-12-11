@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\OwnerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\RestaurantController;
 use App\Models\Product;
+use App\Models\Restaurant;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('dashboard', [OwnerController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('dashboard', [RestaurantController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
