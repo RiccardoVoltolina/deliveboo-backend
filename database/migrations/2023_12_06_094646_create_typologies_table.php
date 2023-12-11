@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('typologies', function (Blueprint $table) {
             $table->id();
-            $table->string('name_typology');
+            $table->string('typology');
+            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }

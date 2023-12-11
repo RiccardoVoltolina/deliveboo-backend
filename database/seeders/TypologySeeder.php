@@ -17,7 +17,8 @@ class TypologySeeder extends Seeder
 
         foreach ($typologies as $typology) {
             $new_typology = new Typology();
-            $new_typology->name_typology = $typology;
+            $new_typology->typology = $typology;
+
             $new_typology->save();
         }
     }

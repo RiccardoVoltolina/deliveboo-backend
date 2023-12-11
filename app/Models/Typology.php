@@ -10,8 +10,8 @@ class Typology extends Model
 {
     use HasFactory;
 
-    public function restaurants(): BelongsToMany
+    public function user(): BelongsToMany
     {
-        return $this->belongsToMany(Restaurant::class);
+        return $this->belongsToMany(User::class, 'typology_user', 'typology_id', 'user_id');
     }
 }

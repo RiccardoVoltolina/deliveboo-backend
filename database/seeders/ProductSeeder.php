@@ -21,12 +21,11 @@ class ProductSeeder extends Seeder
             $new_product = new Product();
             $new_product->name = $product['name'];
             $new_product->price = $product['price'];
-            $new_product->restaurant_id = $product['restaurant_id'];
+            $new_product->user_id = $product['user_id'];
             $new_product->description = $product['description'];
             $new_product->cover_image = $product['cover_image'];
             $new_product->ingredients = implode(', ', $product['ingredients']);
 
-            $new_product->name = $product['name'];
             $new_product->is_available = $product['is_available'];
             $new_product->save();
         }

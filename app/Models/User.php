@@ -8,10 +8,17 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    public function typologies(): BelongsToMany
+    {
+        return $this->belongsToMany(Typology::class, 'typology_user', 'user_id', 'typology_id');
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -22,10 +29,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'name_typology',
+        'typology',
         'restaurantName',
         'vat',
         'address',
+        'cover_image',
     ];
 
     /**
@@ -48,8 +56,5 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function restaurant(): HasOne
-    {
-        return $this->hasOne(Restaurant::class);
-    }
+   
 }

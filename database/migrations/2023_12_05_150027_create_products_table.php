@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            // $table->foreign('restaurant_id')->references('id')->on('restaurant')->unique();
-            // $table->foreign('restaurant_name')->references('name')->on('restaurant')->unique();
             $table->string('name', 60);
-            $table->float('price', 4, 2);
+            $table->float('price', 5, 2);
             $table->text('description');
-            $table->longText('cover_image');
+            $table->string('cover_image');
+            $table->unsignedBigInteger('user_id');
+
+            // prendo l id degli utenti nella migrazione degli users
+            
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->text('ingredients');
             $table->boolean('is_available')->default(true);
             $table->timestamps();

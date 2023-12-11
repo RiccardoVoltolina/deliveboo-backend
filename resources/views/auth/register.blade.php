@@ -39,23 +39,26 @@
                             </div>
                         </div>
 
+                        <div class="mb-3">
+                            <label for="cover_image" class="form-label">Scegli un'immagine per il tuo ristorante</label>
+                            <input type="file" class="form-control" name="cover_image" id="cover_image" placeholder="Scegli una immagine per il tuo progetto" aria-describedby="cover_image_helper" value="{{ old('cover_image') }}">
+                            <div id="cover_image_helper" class="form-text">Inserisci una immagine per il tuo ristorante</div>
+                        </div>
+
                         <div class="mb-4 row">
-                            <label for="name_typology" class="col-md-4 col-form-label text-md-right">Scegli la tipologia del ristorante</label>
+                            <label for="typologies" class="col-md-4 col-form-label text-md-right">Scegli la tipologia del ristorante</label>
                             <div class="col-md-6">
 
-                                <select multiple class="form-select @error('typologies') is-invalid  @enderror" name="name_typology" id="name_typology">
-                                    <option selected disabled>Tipologia/e</option>
-                                    <option class="d-none" value="">Uncategorized</option>
-                            
-                                    <option value="italiano">italiano</option>
-                                    <option value="cinese">cinese</option>
+                                <select multiple class="form-select @error('typologies') is-invalid  @enderror" name="typologies[]" id="typologies">
+                                    @foreach ($typologies as $typology)
+                                    
+                                    <option value="{{$typology->id}}">{{$typology->typology}}</option>
+                                    {{-- <option value="cinese">cinese</option>
                                     <option value="giapponese">giapponese</option>
                                     <option value="coreano">coreano</option>
                                     <option value="messicano">messicano</option>
-                                    <option value="americano">americano</option>
-
-
-
+                                    <option value="americano">americano</option> --}}
+                                    @endforeach
                             
                                 </select>
                             </div>

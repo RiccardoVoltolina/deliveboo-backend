@@ -41,7 +41,9 @@
 
 
                                 <ul>
-                                    <li>{{ $user->name_typology }};</li>
+                                    @foreach ($typologies as $typology)
+                                    <li>{{ $typology->typology }};</li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

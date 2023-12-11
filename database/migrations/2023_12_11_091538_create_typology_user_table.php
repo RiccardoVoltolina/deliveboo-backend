@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Restaurant;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('restaurant_typology', function (Blueprint $table) {
-            $table->unsignedBigInteger('restaurant_id')->nullable();
-            $table->foreign('restaurant_id')->references('id')->on('restaurants');
+        Schema::create('typology_user', function (Blueprint $table) {
 
-
-            $table->unsignedBigInteger('typology_id')->nullable();
+            $table->unsignedBigInteger('typology_id');
             $table->foreign('typology_id')->references('id')->on('typologies');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
 
-            $table->primary(['restaurant_id', 'typology_id']);
+
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('restaurant_typology');
+        Schema::dropIfExists('typology_user');
     }
 };
