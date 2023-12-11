@@ -91,7 +91,7 @@
             </table>
         </div>
 
-        <div class="pt-4"> {{ $products->links('pagination::bootstrap-5') }} </div>
+        {{-- <div class="pt-4"> {{ $products->links('pagination::bootstrap-5') }} </div> --}}
     </div>
 
     </div>
