@@ -1,4 +1,4 @@
-@extends('admin.products.sidebar')
+@extends('admin.sidebar')
 
 @section('content')
     <div>

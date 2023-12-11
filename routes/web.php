@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RestaurantController;
@@ -28,6 +29,7 @@ Route::get('dashboard', [RestaurantController::class, 'index'])->middleware(['au
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     
     Route::resource('products', ProductController::class);
+    Route::resource('orders', OrderController::class);
 });
 
 

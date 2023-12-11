@@ -80,6 +80,10 @@
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.products.index' ? 'del_primary' : '' }}" href="{{route('admin.products.index')}}">
                                     <i class="fa-solid fa-book-open"></i> Piatti
                                 </a>
+
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.orders.index' ? 'del_primary' : '' }}" href="{{route('admin.orders.index')}}">
+                                <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> Ordini
+                                </a>
                             </li>
 
                         </ul>
