@@ -11,9 +11,9 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function products(): BelongsToMany
+    public function orders(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Order::class);
     }
 
 }

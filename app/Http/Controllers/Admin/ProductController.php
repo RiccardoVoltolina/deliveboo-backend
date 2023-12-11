@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -51,44 +52,44 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|max:50|min:2',
-            'description' => 'nullable|max:1000|min:2',
-            'price' => 'nullable|min:2',
-            'cover_image' => 'nullable|mimes:jpg,bmp,png|max:300',
-            'ingredients' => 'required|max:1000|min:2',
-        ]);
+        $restaurant = Auth::user()->restaurant;     
+        $validated = $request->validated();
 
-        $product = new Product();
+        
 
 
 
-        if ($request->has('cover_image')) {
-            $file_path =  Storage::disk('public')->put('product_images', $request->cover_image);
-            $product->cover_image = $file_path;
+        if ($validated->hasFile('cover_image')) {
+            $file_path =  Storage::put('uploads',$validated['cover_image']);
+
+            $validated ['cover_image'] = $file_path;
         }
 
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->ingredients = $request->ingredients;
-        $product->is_available = $request->is_available;
-        $product->restaurant_id = Restaurant::where('user_id', Auth::user()->id)->first()?->id;
+        $product = new Product();
+        $product->fill($validated);
+
+        // $product=Product::create($validated);
+        // $product->name = $request->name;
+        // $product->description = $request->description;
+        // $product->price = $request->price;
+        // $product->ingredients = $request->ingredients;
+        // $product->is_available = $request->is_available;
+        // $product->restaurant_id = Restaurant::where('user_id', Auth::user()->id)->first()?->id;
 
 
 
 
+       
 
-
-        $product->save();
+        $product = $restaurant->product()->save($product);
 
         // IMPORTANTE: prima di usare atach, bisogna eseguire il save del prodotto, senò non funziona!
 
         // $product->orders()->attach($request->orders);
 
-        return to_route('admin.products.index');
+        return to_route('admin.products.index')->with('message', 'New Product Added');
     }
 
     /**
@@ -102,41 +103,41 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
-    {
-        return view('admin.products.edit', compact('product'));
-    }
+    // public function edit(Product $product)
+    // {
+    //     return view('admin.products.edit', compact('product'));
+    // }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Product $product)
-    {
-        $validated = $request->validate([
-            'name' => 'required|max:50|min:2',
-            'description' => 'nullable|max:1000|min:2',
-            'price' => 'nullable|min:2',
-            'cover_image' => 'nullable|mimes:jpg,bmp,png|max:300',
-            'ingredients' => 'required|max:1000|min:2',
-        ]);
+    // /**
+    //  * Update the specified resource in storage.
+    //  */
+    // public function update(Validated $request, Product $product)
+    // {
+    //     $validated = $request->validated([
+    //         'name' => 'required|max:50|min:2',
+    //         'description' => 'nullable|max:1000|min:2',
+    //         'price' => 'nullable|min:2',
+    //         'cover_image' => 'nullable|mimes:jpg,bmp,png|max:300',
+    //         'ingredients' => 'required|max:1000|min:2',
+    //     ]);
 
-        $data = $request->all();
+    //     $data = $request->all();
 
-        if ($request->has('cover_image')) {
-            $file_path =  Storage::disk('public')->put('product_images', $request->cover_image);
+    //     if ($request->has('cover_image')) {
+    //         $file_path =  Storage::disk('public')->put('product_images', $request->cover_image);
 
-            // prendo il $data, che contiene tutte le richieste, seleziono il thumb e gli dico che è ugiuale a $file_path
+    //         // prendo il $data, che contiene tutte le richieste, seleziono il thumb e gli dico che è ugiuale a $file_path
 
 
-            $data['cover_image'] = $file_path;
-        }
+    //         $data['cover_image'] = $file_path;
+    //     }
 
-        // aggiorno i dati del mio progetto
+    //     // aggiorno i dati del mio progetto
 
-        $product->update($data);
+    //     $product->update($data);
 
-        return redirect()->route('admin.products.show', $product->id);
-    }
+    //     return redirect()->route('admin.products.show', $product->id);
+    // }
 
     /**
      * Remove the specified resource from storage.

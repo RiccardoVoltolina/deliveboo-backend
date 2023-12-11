@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreOrderRequest;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
 
@@ -13,7 +14,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+
+        // dd($orders);
+        return view("admin.orders.index", compact('orders'));
     }
 
     /**
