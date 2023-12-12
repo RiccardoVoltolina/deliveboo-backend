@@ -1,4 +1,4 @@
-@extends('admin.products.sidebar')
+@extends('admin.sidebar')
 
 @section('content')
     <h1 class="text-center my-3">PIATTO</h1>
