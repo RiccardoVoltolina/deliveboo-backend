@@ -12,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
@@ -35,7 +36,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -52,14 +53,21 @@ class RegisteredUserController extends Controller
             'cover_image' => $request->cover_image,
             'name' => $request->restaurantName,
             'user_id' => $user->id,
-            
+
         ]);
+        // $cover_image = Storage::disk('local')->put('restaurants_images', $request['cover_image']);
+        // $request['cover_image'] = $cover_image;
+
+        // if ($request->has('cover_image')) {
+        //     $file_path =  Storage::disk('public')->put('restaurants', $request->cover_image);
+
+        //     $restaurant->cover_image = $file_path;
+        // }
 
         if ($request->has('typologies')) {
 
             $restaurant->typologies()->sync($request->typologies);
-
-        } 
+        }
 
 
         event(new Registered($user));

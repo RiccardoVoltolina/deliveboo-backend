@@ -31,9 +31,10 @@
                     
                     <div class=" my-5 d-flex justify-content-center" >
                         
-                      <div class="col-6">
+                      {{-- <div class="col-6">
                          <img src="{{$restaurants->cover_image}}" class="card-img-top w-75 m-auto" alt="...">
-                      </div>
+                         
+                      </div> --}}
                      
                       <div class="col-6">
                       <h3 class="self-align-center">{{$restaurants->name}}:</h3>
