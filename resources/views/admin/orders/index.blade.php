@@ -50,13 +50,32 @@
                         {{$order->deliveryDate}}
                     </td>
                     <td class="text-center">
-                        {{$order->statusOrder}}
+                        <!-- {{$order->statusOrder}} -->
+                        @if($order->statusOrder === 1)
+                            Ordine completato
+                        
+                        @else
+                        Ordine in lavorazione
+                        @endif
+                        
                     </td>
                     <td class="text-center">
                         {{$order->totalPrice}} &euro;
                     </td>
-                    <td>
-                       <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST">
+                    
+                    <td class="text-center m-auto">
+                        <div class="d-flex gap-2">
+
+                        <!-- <form action=
+                        "{{ route('admin.orders.show',$order->id)}}">
+
+                                            
+                        </form> -->
+                        <button type="submit" class="btn btn-primary"><i
+                                                    class="fa-solid fa-circle-info"></i></button>
+
+                   
+                        <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
 
@@ -65,7 +84,18 @@
 
                         class="fa-solid fa-trash"></i></button>
                     </form> 
-                    </td>
+                   
+                                    </td>
+
+
+
+
+                        </div>
+                        
+
+
+                       
+                    
                     
 
                 </tr>
