@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-4 row">
@@ -39,11 +39,11 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="cover_image" class="form-label">Scegli un'immagine per il tuo ristorante</label>
                             <input type="file" class="form-control" name="cover_image" id="cover_image" placeholder="Scegli una immagine per il tuo progetto" aria-describedby="cover_image_helper" value="{{ old('cover_image') }}">
                             <div id="cover_image_helper" class="form-text">Inserisci una immagine per il tuo ristorante</div>
-                        </div>
+                        </div> --}}
 
                         <div class="mb-4 row">
                             <label for="typologies" class="col-md-4 col-form-label text-md-right">Scegli la tipologia del ristorante</label>
