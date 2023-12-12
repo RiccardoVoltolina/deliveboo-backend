@@ -20,7 +20,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>
+                    <td class="text-center">
                         @if ($product->cover_image)
                             <img width="100" src="{{ asset('storage/' . $product->cover_image) }}">
                         @else
