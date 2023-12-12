@@ -50,7 +50,7 @@ class RegisteredUserController extends Controller
         $restaurant = Restaurant::create([
             'address' => $request->address,
             'vat' => $request->vat,
-            'cover_image' => $request->cover_image,
+            'cover_image' => '',
             'name' => $request->restaurantName,
             'user_id' => $user->id,
 
