@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ProductController;
 use App\Models\Product;
 use App\Models\Restaurant;
+use App\Models\Typology;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,20 @@ Route::get('restaurants', function(){
     return response()->json([
         'success' => true,
         'result' => Restaurant::with(['typologies', 'products'])->orderByDesc('id')->paginate(10)
+    ]);
+});
+
+Route::get('typologies', function(){
+    // $restaurants =  Restaurant::all();
+
+    // foreach ($restaurants as $restaurant) {
+
+    //     $products = $restaurant->products;
+
+    // }
+    return response()->json([
+        'success' => true,
+        'result' => Typology::all(),
     ]);
 });
 
