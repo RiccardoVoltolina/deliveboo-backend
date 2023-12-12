@@ -46,7 +46,7 @@
 
 
                                 <td class="text-center m-auto">
-                                    <div class="d-flex">
+                                    <div class="d-flex justify-content-center">
 
                                         <form action="{{ route('admin.products.show', [$product->id]) }}">
 
