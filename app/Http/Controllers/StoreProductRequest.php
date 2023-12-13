@@ -26,11 +26,11 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'bail|required|string|max:50|min:2',
-            'description' => 'bail|nullable|string|max:100|min:2',
-            'price' => 'bail|required|min:2',
-            'cover_image' => 'bail|nullable|mimes:jpg,bmp,png|max:300',
-            'ingredients' => 'required|max:1000|min:2',
+            // 'name' => 'bail|required|string|max:50|min:2',
+            // 'description' => 'bail|nullable|string|max:100|min:2',
+            // 'price' => 'bail|required|min:2',
+            // 'cover_image' => 'bail|nullable|mimes:jpg,bmp,png|max:300',
+            // 'ingredients' => 'required|max:1000|min:2',
         ];
     }
 }

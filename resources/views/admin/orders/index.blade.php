@@ -1,10 +1,10 @@
 @extends('admin.sidebar')
 
 @section('content')
-    <h1 class="text-center my-3">Ordini ricevuti: </h1>
+    <h1 class="my-5">Ordini ricevuti: </h1>
 
 
-    <div class="table-responsive mt-5">
+    <div class="table-responsive mt-3">
         <table class="table table-primary">
             <thead>
                 <tr>
@@ -23,7 +23,7 @@
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody >
 
                 @forelse ($orders as $order)
                 <tr>
@@ -103,7 +103,7 @@
             </tbody>
 
             @empty
-                            <h1>Non hai ancora degli ordini!</h1>
+                            <h1 class="mb-3">Non hai ancora degli ordini!</h1>
                         @endforelse
         </table>
     </div>
