@@ -38,6 +38,8 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'typologies' =>['required'],
+            'vat' => ['required','string','min:11', 'max:11','unique:restaurants,vat'],
         ]);
 
         $user = User::create([

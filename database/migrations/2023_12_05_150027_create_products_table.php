@@ -17,8 +17,8 @@ return new class extends Migration
             // $table->foreign('restaurant_name')->references('name')->on('restaurant')->unique();
             $table->string('name', 60);
             $table->float('price', 4, 2);
-            $table->text('description');
-            $table->longText('cover_image');
+            $table->text('description')->nullable();
+            $table->longText('cover_image')->nullable();
             $table->text('ingredients');
             $table->boolean('is_available')->default(true);
             $table->timestamps();

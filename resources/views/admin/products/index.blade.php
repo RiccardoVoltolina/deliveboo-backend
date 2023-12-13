@@ -1,8 +1,11 @@
 @extends('admin.sidebar')
 
 @section('content')
-    <div>
-        <form class="my-3" action="{{ route('admin.products.create') }}">
+
+    
+    <div class="d-flex justify-content-between mt-5 mb-3">
+        <h1 class="">I tuoi piatti:</h1>
+        <form class="" action="{{ route('admin.products.create') }}">
 
             <button type="submit" class="btn btn-success my-3">Aggiungi un nuovo piatto</button>
 
@@ -22,6 +25,7 @@
                     <tr class>
                         <th class="text-center">ID</th>
                         <th class="text-center">NOME</th>
+                        <th class="text-center">PREZZO</th>
                         <th class="text-center">IMMAGINE</th>
                         <th class="text-center">AZIONI</th>
                     </tr>
@@ -34,6 +38,7 @@
                             <tr class="table-primary del_dark">
                                 <td class="text-center m-auto" scope="row">{{ $product->id }}</td>
                                 <td class="text-center m-auto">{{ $product->name }}</td>
+                                <td class="text-center m-auto">{{ $product->price }} &euro;</td>
                                 <td class="text-center m-auto">
                                     @if (Str::contains($product->cover_image, 'product_images'))
                                         <img class="img-fluid w-50" src="{{ asset('storage/' . $product->cover_image) }}"

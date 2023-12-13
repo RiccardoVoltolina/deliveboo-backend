@@ -38,7 +38,7 @@ class ProductController extends Controller
             // $products = Product::orderByDesc('id')->paginate(10);
             return view("admin.products.index", compact('products'));
         } else {
-            $message = 'non hai un ristorante';
+            $message = 'Non hai prodotti disponibili!';
             return view("admin.products.index", compact('message'));
         }
         
@@ -70,8 +70,9 @@ class ProductController extends Controller
             'name' => 'required|max:50|min:2',
             'description' => 'nullable|max:1000|min:2',
             'price' => 'nullable|min:2',
-            'cover_image' => 'nullable|mimes:jpg,bmp,png|max:300',
+            'cover_image' => 'nullable|mimes:jpg,bmp,png|max:600',
             'ingredients' => 'required|max:1000|min:2',
+            'is_available' => 'required',
         ]);
 
         $product = new Product();
@@ -86,6 +87,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
+        $product->cover_image = $request->cover_image;
         $product->ingredients = $request->ingredients;
         $product->is_available = $request->is_available;
         $product->restaurant_id = Restaurant::where('user_id', Auth::user()->id)->first()?->id;
@@ -128,12 +130,13 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:50|min:2',
             'description' => 'nullable|max:1000|min:2',
-            'price' => 'nullable|min:2',
-            'cover_image' => 'nullable|mimes:jpg,bmp,png|max:300',
+            'price' => 'required|min:2',
+            'cover_image' => 'nullable|mimes:jpg,bmp,png|max:600',
             'ingredients' => 'required|max:1000|min:2',
+            'is_available' => 'required',
         ]);
 
-        $data = $request->all();
+        $data = $validated;
 
         if ($request->has('cover_image')) {
             $file_path =  Storage::disk('public')->put('product_images', $request->cover_image);
@@ -148,7 +151,7 @@ class ProductController extends Controller
 
         $product->update($data);
 
-        return redirect()->route('admin.products.show', $product->id);
+        return redirect()->route('admin.products.show', $product->id)->with('messaggio', 'Hai modificato il piatto con successo!');;
     }
 
     /**

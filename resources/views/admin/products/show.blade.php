@@ -39,7 +39,7 @@
 
 
                     <td class="text-center">
-                        {{ $product->price }}
+                        {{ $product->price }} &euro;
                     </td>
 
 

@@ -4,6 +4,15 @@
 <body class="del_yellow">
  <div class="container mt-4">
     <div class="row justify-content-center">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header del_dark text-light">{{ __('Register') }}</div>
@@ -51,14 +60,21 @@
                             
                             <div class="col-md-6">
 
-                                <select multiple class="form-select @error('typologies') is-invalid  @enderror border-2" name="typologies[]" id="typologies">
+                                <select required multiple class="form-select @error('typologies') is-invalid  @enderror border-2" name="typologies[]" id="typologies">
                                     @foreach ($typologies as $typology)
                                     
                                     <option value="{{$typology->id}}">{{$typology->name_typology}}</option>
                                     
                                     @endforeach
+
+                                    @error('typologies')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             
                                 </select>
+                               
                             </div>
 
                         </div>
