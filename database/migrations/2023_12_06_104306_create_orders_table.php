@@ -16,7 +16,6 @@ return new class extends Migration
             // $table->foreign('restaurant_id')->references('id')->on('restaurant')->unique();
             
             $table->string('order_number');
-
             $table->string('costumer', 60);
             $table->string('email', 60)->unique();
             $table->string('costumerAddress', 60);

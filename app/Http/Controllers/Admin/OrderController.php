@@ -40,7 +40,11 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $products= $order->products;
+
+        // dd($products);
+        return view("admin.orders.show", compact('products'));
+        
     }
 
     /**

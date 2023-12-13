@@ -66,13 +66,15 @@
                     <td class="text-center m-auto">
                         <div class="d-flex gap-2">
 
-                        <!-- <form action=
-                        "{{ route('admin.orders.show',$order->id)}}">
 
-                                            
-                        </form> -->
-                        <button type="submit" class="btn btn-primary"><i
+                        <form action="{{ route('admin.orders.show', [$order->id]) }}">
+
+                                            <button type="submit" class="btn btn-primary"><i
                                                     class="fa-solid fa-circle-info"></i></button>
+
+                                        </form>
+                        
+                        
 
                    
                         <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST">
