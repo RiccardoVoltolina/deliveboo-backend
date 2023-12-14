@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Api\RestaurantController;
 use App\Models\Product;
 use App\Models\Restaurant;
 use App\Models\Typology;
@@ -32,7 +33,7 @@ Route::get('restaurants', function(){
     // }
     return response()->json([
         'success' => true,
-        'result' => Restaurant::with(['typologies', 'products'])->orderByDesc('id')->paginate(10)
+        'result' => Restaurant::with(['typologies', 'products'])->orderBy('id')->paginate(10)
     ]);
 });
 
@@ -49,6 +50,8 @@ Route::get('typologies', function(){
         'result' => Typology::all(),
     ]);
 });
+
+Route::get('restaurant/{restaurant:id}', [RestaurantController::class, 'show']);
 
 // Route::get('restaurants', function(){
 //     return response()->json([
