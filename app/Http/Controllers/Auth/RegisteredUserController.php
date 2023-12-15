@@ -37,11 +37,14 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required','confirmed', 'min:8', 'max:255'],
+            'password_confirmation' => ['required','same:password'],
             'typologies' =>['required'],
-            'vat' => ['required','string','min:11', 'max:11','unique:restaurants,vat'],
+            'vat' => ['required','numeric','unique:restaurants,vat'],
         ]);
 
+
+        
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
