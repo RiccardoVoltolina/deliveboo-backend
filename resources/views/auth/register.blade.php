@@ -2,7 +2,7 @@
 
 
 @section('content')
-<body class="del_yellow">
+<div class="del_yellow">
  <div class="container mt-4">
     <div class="row justify-content-center">
     @if ($errors->any())
@@ -19,7 +19,7 @@
                 <div class="card-header del_dark text-light">{{ __('Registrati') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <form method="POST" onsubmit="return validation()" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-4 row">
@@ -112,7 +112,7 @@
                             <label required for="vat" class="col-md-4 col-form-label text-md-right">{{ __('Partita Iva') }}</label>
 
                             <div class="col-md-6">
-                                <input minlength="11" maxlength="11" required  id="vat" type="text" class="form-control  @error('vat') is-invalid @enderror border-2" name="vat" value="{{ old('vat') }}" required autocomplete="vat" autofocus>
+                                <input minlength="11" maxlength="11" required  id="vat" type="number" class="form-control  @error('vat') is-invalid @enderror border-2" name="vat" value="{{ old('vat') }}" required autocomplete="vat" autofocus>
 
                                 @error('vat')
                                 <span class="invalid-feedback" role="alert">
@@ -141,6 +141,9 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control border-2" name="password_confirmation" value="{{ old('password_confirmation') }}" required autocomplete="new-password">
+                                <span class="invalid-feedback" id="passwordError" style="display: none" role="alert">
+                                    <strong>La password non coincide</strong>
+                                </span>
                             </div>
                         </div>
 
@@ -157,6 +160,25 @@
         </div>
     </div>
 </div>   
-</body>
+</div>
 
+<script>
+    
+    function validation() {
+        let password = document.getElementById('password').value;
+        let confirmpassword = document.getElementById('password-confirm').value;
+        let passwordError = document.getElementById('passwordError');
+    
+        if (password !== confirmpassword) {
+            passwordError.style.display = 'block';
+            return false
+        } else {
+            passwordError.style.display = 'none';
+            return true;
+    
+        }
+    }
+
+
+</script>
 @endsection
