@@ -7,10 +7,10 @@
     
         
         <h1 class="display-5 fw-bold">
-            Welcome to Deliveboo
+            Benvenuti su Deliveboo
         </h1>
 
-        <p class="col-md-8 fs-4">This a food delivery app</p>
+        <p class="col-md-8 fs-4">Una food delivery app</p>
 
         
         
