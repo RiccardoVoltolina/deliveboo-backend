@@ -134,7 +134,7 @@
                                             value="{{ old('vat') }}" required autocomplete="vat" autofocus>
 
                                             <span class="invalid-feedback" id="vatError" style="display: none" role="alert">
-                                                <strong>Inserisci massimo 11 caratteri loris negro</strong>
+                                                <strong>Inserisci 11 caratteri</strong>
                                             </span>
 
                                         @error('vat')
