@@ -22,14 +22,13 @@
             </thead>
             <tbody>
 
-                @foreach($products as $product)
-                    <tr>
+ì                    <tr>
 
                         <td class="text-center m-auto" scope="row">
-                            {{ $product->id }}
+                            {{ $order->id }}
                         </td>
-                        <td class="text-center m-auto" scope="row">
-                            {{ $product->pivot->product_quantity }}
+                        {{-- <td class="text-center m-auto" scope="row">
+                            {{ $order->qu }}
                         </td>
 
                         <td class="text-center" scope="row">
@@ -46,7 +45,7 @@
                         <td class="text-center">
                             {{ $product->price }} &euro;
                         </td>
-                    
+                     --}}
 
 
 
@@ -54,20 +53,18 @@
                     </tr>
 
 
-                    <?php
+                    {{-- <?php
                         $totalQty=$totalQty+$product->pivot->product_quantity;
                         $totalPrice=$totalPrice+$product->price;
-                    ?>
-                    
-                @endforeach
+                    ?> --}}
 
-                <tr class="text-center">
+                {{-- <tr class="text-center">
                     <td class="fw-bold">Totale:</td>
                     <td>{{$totalQty}}</td>
                     <td></td>
                     <td></td>
                     <td>{{$totalPrice}} &euro;</td>
-                </tr>
+                </tr> --}}
             </tbody>
             
                             

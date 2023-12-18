@@ -66,17 +66,17 @@
                             <div class="d-flex gap-2">
 
 
-                                <form action="{{ route('admin.orders.show', [$order->id]) }}">
+                                {{-- <form action="{{ route('admin.orders.show', [$order->id]) }}">
 
                                     <button type="submit" class="btn btn-primary"><i
                                             class="fa-solid fa-circle-info"></i></button>
 
-                                </form>
+                                </form> --}}
 
 
 
 
-                                <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST">
+                                <form action="{{ route('admin.orders.destroy', [$order->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
