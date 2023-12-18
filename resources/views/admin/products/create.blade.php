@@ -36,7 +36,7 @@
             <div class="mb-3">
                 <label for="price" class="form-label">Prezzo</label>
                 {{-- utilizziamo la funzione old per ridare all'utente i valori inseriti prima,in caso di errore --}}
-                <input required type="number" class="form-control" name="price" id="price" aria-describedby="helpId"
+                <input required type="text" class="form-control" name="price" id="price" aria-describedby="helpId"
                     placeholder="Scrivi il prezzo del tuo piatto" value="{{ old('price') }}">
                 <small id="priceHelper" class="form-text text-muted">Scrivi il prezzo del tuo piatto</small>
                 <span class="invalid-feedback" id="priceError" style="display: none" role="alert">

@@ -69,7 +69,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:50|min:2',
             'description' => 'nullable|max:1000|min:2',
-            'price' => 'nullable|min:2',
+            'price' => 'nullable|numeric',
             'cover_image' => 'nullable|mimes:jpg,bmp,png|max:600',
             'ingredients' => 'required|max:1000|min:2',
             'is_available' => 'required',
