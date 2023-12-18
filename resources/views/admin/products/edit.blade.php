@@ -96,4 +96,20 @@
         <button type="button" class="btn btn-warning">TORNA AI PROGETTI</button>
     </a> --}}
     </div>
+    <script>
+        function validation() {
+            let price = document.getElementById('price').value;
+
+            let priceError = document.getElementById('priceError');
+
+            if (price < 0) {
+                priceError.style.display = 'block';
+                return false
+            } else {
+                priceError.style.display = 'none';
+                return true;
+
+            }
+        }
+    </script>
 @endsection
