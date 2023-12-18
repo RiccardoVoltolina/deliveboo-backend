@@ -40,10 +40,10 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $products= $order->products;
+        // $products= $order->products;
 
         // dd($products);
-        return view("admin.orders.show", compact('products'));
+        return view("admin.orders.show", compact('order'));
         
     }
 
@@ -66,9 +66,9 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $orders)
+    public function destroy(Order $order)
     {
-        $orders->delete();
+        $order->delete();
 
         return redirect()->route('admin.orders.index')->with('messaggio', 'hai cancellato il piatto con successo!');
     }

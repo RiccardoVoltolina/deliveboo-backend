@@ -78,16 +78,29 @@ class ProductController extends Controller
         $product = new Product();
 
 
+        // if ($request->has('cover_image')) {
+        //     $file_path = Storage::disk('public')->put('product_images', $request->cover_image);
+        //     $product->cover_image = $file_path;
+        // }
+
 
         if ($request->has('cover_image')) {
             $file_path =  Storage::disk('public')->put('product_images', $request->cover_image);
+
+            // prendo il $data, che contiene tutte le richieste, seleziono il thumb e gli dico che è ugiuale a $file_path
+
+
             $product->cover_image = $file_path;
         }
+
+
+
+
+
 
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
-        $product->cover_image = $request->cover_image;
         $product->ingredients = $request->ingredients;
         $product->is_available = $request->is_available;
         $product->restaurant_id = Restaurant::where('user_id', Auth::user()->id)->first()?->id;

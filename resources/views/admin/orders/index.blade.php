@@ -76,7 +76,7 @@
 
 
 
-                                <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST">
+                                <form action="{{ route('admin.orders.destroy', [$order->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 

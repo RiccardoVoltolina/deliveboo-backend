@@ -204,7 +204,7 @@
 
             let vatError = document.getElementById('vatError');
 
-            if (vat != 11) {
+            if (vat.length != 11) {
                 vatError.style.display = 'block';
 
                 return false
