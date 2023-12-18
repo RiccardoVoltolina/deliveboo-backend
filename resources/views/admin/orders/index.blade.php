@@ -8,7 +8,7 @@
         <table class="table table-primary">
             <thead>
                 <tr>
-                    
+
                     <th class="text-center" scope="col">№ ORDINE</th>
                     <th class="text-center" scope="col">NOME CUSTOMER</th>
                     <th class="text-center" scope="col">E-MAIL</th>
@@ -23,91 +23,89 @@
                 </tr>
             </thead>
 
-            <tbody >
+            <tbody>
 
                 @forelse ($orders as $order)
-                <tr>
+                    <tr>
 
-                    <td class="text-center" scope="row">{{ $order->order_number }}</td>
+                        <td class="text-center" scope="row">{{ $order->order_number }}</td>
 
-                    <td class="text-center">
-                        {{$order->costumer}}
-                    </td>
+                        <td class="text-center">
+                            {{ $order->costumer }}
+                        </td>
 
-                    <td class="text-center">
-                        {{$order->email}}
-                    </td>
-                    <td class="text-center">
-                        {{$order->phoneNumber}}
-                    </td>
-                    <td class="text-center">
-                        {{$order->costumerAddress}}
-                    </td>
-                    <td class="text-center">
-                        {{$order->orderDate}}
-                    </td>
-                    <td class="text-center">
-                        {{$order->deliveryDate}}
-                    </td>
-                    <td class="text-center">
-                        <!-- {{$order->statusOrder}} -->
-                        @if($order->statusOrder === 1)
-                            Ordine completato
-                        
-                        @else
-                        Ordine in lavorazione
-                        @endif
-                        
-                    </td>
-                    <td class="text-center">
-                        {{$order->totalPrice}} &euro;
-                    </td>
-                    
-                    <td class="text-center m-auto">
-                        <div class="d-flex gap-2">
+                        <td class="text-center">
+                            {{ $order->email }}
+                        </td>
+                        <td class="text-center">
+                            {{ $order->phoneNumber }}
+                        </td>
+                        <td class="text-center">
+                            {{ $order->costumerAddress }}
+                        </td>
+                        <td class="text-center">
+                            {{ $order->orderDate }}
+                        </td>
+                        <td class="text-center">
+                            {{ $order->deliveryDate }}
+                        </td>
+                        <td class="text-center">
+                            <!-- {{ $order->statusOrder }} -->
+                            @if ($order->statusOrder === 1)
+                                Ordine completato
+                            @else
+                                Ordine in lavorazione
+                            @endif
 
+                        </td>
+                        <td class="text-center">
+                            {{ $order->totalPrice }} &euro;
+                        </td>
 
-                        <form action="{{ route('admin.orders.show', [$order->id]) }}">
-
-                                            <button type="submit" class="btn btn-primary"><i
-                                                    class="fa-solid fa-circle-info"></i></button>
-
-                                        </form>
-                        
-                        
-
-                   
-                        <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
+                        <td class="text-center m-auto">
+                            <div class="d-flex gap-2">
 
 
-                        <button type="submit" class="btn btn-danger"> <i
+                                <form action="{{ route('admin.orders.show', [$order->id]) }}">
 
-                        class="fa-solid fa-trash"></i></button>
-                    </form> 
-                   
-                                    </td>
+                                    <button type="submit" class="btn btn-primary"><i
+                                            class="fa-solid fa-circle-info"></i></button>
+
+                                </form>
 
 
 
 
-                        </div>
-                        
+                                <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
 
 
-                       
-                    
-                    
+                                    <button type="submit" class="btn btn-danger"> <i
+                                            class="fa-solid fa-trash"></i></button>
+                                </form>
 
-                </tr>
+                        </td>
 
-            </tbody>
 
-            @empty
-                            <h1 class="mb-3">Non hai ancora degli ordini!</h1>
-                        @endforelse
-        </table>
+
+
+    </div>
+
+
+
+
+
+
+
+    </tr>
+
+    </tbody>
+
+@empty
+    <h1 class="mb-3">Non hai ancora degli ordini!</h1>
+    @endforelse
+    </table>
     </div>
     <!--  -->
 @endsection

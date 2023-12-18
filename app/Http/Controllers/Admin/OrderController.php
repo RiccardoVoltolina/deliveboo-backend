@@ -66,8 +66,10 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy(Order $orders)
     {
-        //
+        $orders->delete();
+
+        return redirect()->route('admin.orders.index')->with('messaggio', 'hai cancellato il piatto con successo!');
     }
 }
