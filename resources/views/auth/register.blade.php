@@ -129,9 +129,13 @@
                                         class="col-md-4 col-form-label text-md-right">{{ __('Partita Iva') }}</label>
 
                                     <div class="col-md-6">
-                                        <input minlength="11" maxlength="11" required id="vat" type="number"
+                                        <input required id="vat" type="number"
                                             class="form-control  @error('vat') is-invalid @enderror border-2" name="vat"
                                             value="{{ old('vat') }}" required autocomplete="vat" autofocus>
+
+                                            <span class="invalid-feedback" id="vatError" style="display: none" role="alert">
+                                                <strong>Inserisci massimo 11 caratteri loris negro</strong>
+                                            </span>
 
                                         @error('vat')
                                             <span class="invalid-feedback" role="alert">
@@ -195,8 +199,24 @@
             let confirmpassword = document.getElementById('password-confirm').value;
             let passwordError = document.getElementById('passwordError');
 
+            let vat = document.getElementById('vat').value;
+
+
+            let vatError = document.getElementById('vatError');
+
+            if (vat != 11) {
+                vatError.style.display = 'block';
+
+                return false
+            } else {
+                vatError.style.display = 'none';
+                return true;
+
+            }
+
             if (password !== confirmpassword) {
                 passwordError.style.display = 'block';
+
                 return false
             } else {
                 passwordError.style.display = 'none';
