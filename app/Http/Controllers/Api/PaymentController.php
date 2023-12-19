@@ -14,7 +14,7 @@ class PaymentController extends Controller
 
         // dd($gateway->clientToken());
 
-        $token = $this->$gateway->clientToken()->generate();
+        $token = $gateway->clientToken()->generate();
 
         $data = [
             'succes' => true,
