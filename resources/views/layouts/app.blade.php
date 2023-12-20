@@ -19,7 +19,7 @@
     @vite(['resources/js/app.js'])
 </head>
 
-<body>
+<body class="del_yellow">
     <div id="app">
 
 

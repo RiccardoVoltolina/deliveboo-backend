@@ -136,7 +136,7 @@
                                             value="{{ old('vat') }}" required autocomplete="vat" autofocus>
 
                                             <span class="invalid-feedback" id="vatError" style="display: none" role="alert">
-                                                <strong>Inserisci 11 caratteri</strong>
+                                                <strong>Inserisci 13 caratteri</strong>
                                             </span>
 
                                         @error('vat')
@@ -206,7 +206,7 @@
 
             let vatError = document.getElementById('vatError');
 
-            if (vat.length != 11) {
+            if (vat.length != 13) {
                 vatError.style.display = 'block';
 
                 return false
