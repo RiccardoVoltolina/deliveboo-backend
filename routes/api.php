@@ -66,3 +66,4 @@ Route::post('orders', [PaymentController::class, 'makePayment']);
 
 Route::get('orders', [PaymentController::class, 'generate']);
 
+Route::post('payment', [OrderController::class, 'store']);
