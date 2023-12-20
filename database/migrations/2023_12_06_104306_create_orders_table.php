@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             // $table->foreign('restaurant_id')->references('id')->on('restaurant')->unique();
-            
+
             $table->string('order_number');
             $table->string('costumer', 60);
-            $table->string('email', 60)->unique();
+            $table->string('email', 60);
             $table->string('costumerAddress', 60);
             $table->string('phoneNumber', 15)->nullable();
             $table->date('orderDate');
