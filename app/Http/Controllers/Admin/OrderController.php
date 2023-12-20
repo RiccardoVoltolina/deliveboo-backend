@@ -50,7 +50,7 @@ class OrderController extends Controller
         $order->phoneNumber = $request->phoneNumber;
         $order->email = $request->email;
         $order->restaurant_id = $request->restaurant_id;
-        $order->order_number = rand(100, 10000);
+        $order->order_number = $request->products_name;
         $order->orderDate = Carbon::now()->format('Y-m-d');
         $order->deliveryDate = Carbon::now()->format('Y-m-d');
         $order->statusOrder = 1;
