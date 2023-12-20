@@ -9,9 +9,9 @@
             <thead>
                 <tr>
 
-                    <th class="text-center" scope="col">№ ORDINE</th>
+                    <th class="text-center" scope="col">NOME PRODOTTO</th>
                     <th class="text-center" scope="col">NOME CUSTOMER</th>
-                    <th class="text-center" scope="col">E-MAIL</th>
+                    <th class="text-center" scope="col">QUANTIT&Agrave;</th>
                     <th class="text-center" scope="col">TELEFONO</th>
                     <th class="text-center" scope="col">INDIRIZZO</th>
                     <th class="text-center" scope="col">DATA ORDINAZIONE</th>

@@ -48,7 +48,7 @@ class OrderController extends Controller
         $order->costumer = $request->costumer;
         $order->costumerAddress = $request->costumerAddress;
         $order->phoneNumber = $request->phoneNumber;
-        $order->email = $request->email;
+        $order->email = $request->products_quantity;
         $order->restaurant_id = $request->restaurant_id;
         $order->order_number = $request->products_name;
         $order->orderDate = Carbon::now()->format('Y-m-d');
@@ -60,12 +60,9 @@ class OrderController extends Controller
         $order->save();
 
         return response()->json([
-            'success' => true, 
+            'success' => true,
             'order' => $order,
         ]);
-
-
-
     }
 
     /**
@@ -77,7 +74,6 @@ class OrderController extends Controller
 
         // dd($products);
         return view("admin.orders.show", compact('order'));
-        
     }
 
     /**
