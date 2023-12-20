@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Models\Product;
 use App\Models\Restaurant;
@@ -59,3 +61,8 @@ Route::get('restaurant/{restaurant:id}', [RestaurantController::class, 'show']);
 //         'result' => Product::all(),
 //     ]);
 // });
+
+Route::post('orders', [PaymentController::class, 'makePayment']);
+
+Route::get('orders', [PaymentController::class, 'generate']);
+

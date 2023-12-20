@@ -129,7 +129,9 @@
                                         class="col-md-4 col-form-label text-md-right">{{ __('Partita Iva') }}</label>
 
                                     <div class="col-md-6">
-                                        <input required id="vat" type="number"
+
+                                        <input unique minlength="13" maxlength="13" required id="vat" type="text"
+
                                             class="form-control  @error('vat') is-invalid @enderror border-2" name="vat"
                                             value="{{ old('vat') }}" required autocomplete="vat" autofocus>
 

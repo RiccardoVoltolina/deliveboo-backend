@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
             'password' => ['required','confirmed', 'min:8', 'max:255'],
             'password_confirmation' => ['required','same:password'],
             'typologies' =>['required'],
-            'vat' => ['required','numeric','unique:restaurants,vat'],
+            'vat' => ['required','string','unique:restaurants,vat'],
         ]);
 
 
