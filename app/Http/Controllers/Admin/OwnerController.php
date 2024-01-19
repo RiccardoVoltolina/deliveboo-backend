@@ -17,9 +17,7 @@ class OwnerController extends Controller
 
         $typologies= Auth::user()->restaurant -> typologies;
 
-        // $typologies= Typology::all();
-
-        // dd($typologies);
+        
         
         return view('admin.products.dashboard', compact('restaurants', 'user', 'typologies'));
     }
